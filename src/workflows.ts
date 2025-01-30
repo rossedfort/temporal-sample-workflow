@@ -1,24 +1,15 @@
 import { proxyActivities } from '@temporalio/workflow';
 import type * as activities from './activities';
 
-const {
-  makeHTTPRequest,
-  completeSomethingAsync,
-  // cancellableFetch  // todo: demo usage
-} = proxyActivities<typeof activities>({
+const { heartbeatActivity } = proxyActivities<typeof activities>({
   retry: {
     initialInterval: '50 milliseconds',
-    maximumAttempts: 2,
+    maximumAttempts: 10,
   },
-  startToCloseTimeout: '30 seconds',
+  heartbeatTimeout: '5s',
+  startToCloseTimeout: '1 day',
 });
 
-export async function httpWorkflow(): Promise<string> {
-  const answer = await makeHTTPRequest();
-  return `The answer is ${answer}`;
-}
-
-export async function asyncActivityWorkflow(): Promise<string> {
-  const answer = await completeSomethingAsync();
-  return `The Peon says: ${answer}`;
-}
+export const heartbeatWithSensitivePayload = async (): Promise<void> => {
+  await heartbeatActivity('This is a sensitive payload');
+};

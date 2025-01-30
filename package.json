@@ -5,6 +5,7 @@
   "scripts": {
     "build": "tsc --build",
     "build.watch": "tsc --build --watch",
+    "codec-server": "ts-node src/codec-server.ts",
     "jest": "jest",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
@@ -31,13 +32,19 @@
     "@temporalio/common": "^1.11.6",
     "@temporalio/worker": "^1.11.6",
     "@temporalio/workflow": "^1.11.6",
-    "axios": "^0.28.0",
-    "node-fetch": "2.x"
+    "cors": "^2.8.5",
+    "ejson": "^2.2.2",
+    "express": "^4.20.0",
+    "uuid": "^8.3.2",
+    "yargs": "^16.2.0"
   },
   "devDependencies": {
     "@temporalio/nyc-test-coverage": "^1.11.6",
     "@temporalio/testing": "^1.11.6",
     "@tsconfig/node18": "^18.2.4",
+    "@types/cors": "^2.8.17",
+    "@types/ejson": "^2.2.2",
+    "@types/express": "^5.0.0",
     "@types/jest": "^27.5.1",
     "@types/mocha": "8.x",
     "@types/node": "^22.9.1",
